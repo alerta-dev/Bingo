@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bingo Personalizado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .bingo-container {
+      display: grid;
+      grid-template-columns: repeat(5, 120px);
+      grid-template-rows: repeat(5, 120px);
+      gap: 10px;
+    }
+
+    .cell {
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+      font-size: 14px;
+      transition: transform 0.1s ease;
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+    }
+
+    .cell.crossed::after {
+      content: "❌";
+      position: absolute;
+      font-size: 2em;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bingo-container" id="bingo"></div>
+
+<script>
+  // Lista de cosas para el bingo (puedes cambiarlo por lo que quieras)
+  const bingoItems = [
+    "Se cayó el internet", "Alguien llegó tarde", "Chiste malo", "Silencio incómodo", "Interrupción inesperada",
+    "Reunión que pudo ser un correo", "Micrófono apagado", "Pantalla compartida", "Gato en la cámara", "Problemas técnicos",
+    "Alguien se congela", "Fondo virtual raro", "Saludo forzado", "Lluvia de emojis", "Comentario fuera de tema",
+    "Alguien dice '¿me escuchan?'", "Piden repetir", "Retraso de audio", "Alguien se va sin despedir", "Frase cliché",
+    "Cámara apagada todo el tiempo", "Ruidos de fondo", "Persona multitarea", "Piden apagar micrófonos", "Reunión extendida"
+  ];
+
+  const container = document.getElementById('bingo');
+
+  bingoItems.forEach(item => {
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.textContent = item;
+    cell.addEventListener('click', () => {
+      cell.classList.toggle('crossed');
+    });
+    container.appendChild(cell);
+  });
+</script>
+
+</body>
+</html>
